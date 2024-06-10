@@ -33,6 +33,6 @@ public class Student {
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
     private List<Enrollments>enrollmentsList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "student1", cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
     private List<Payment>paymentList = new ArrayList<>();
 }

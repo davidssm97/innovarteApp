@@ -25,5 +25,5 @@ public class Payment {
 
     @ManyToOne
     @JoinColumn(name = "Id_estudiante",nullable = false)
-    private Student student1;
+    private Student student;
 }
