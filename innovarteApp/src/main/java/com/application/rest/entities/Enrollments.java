@@ -22,5 +22,13 @@ public class Enrollments {
     @Column(name = "Fecha_matriucla")
     private LocalDate enrollmentDate;
 
+    @ManyToOne
+    @JoinColumn(name = "id_curso", nullable = false)
+    private Courses courses;
+
+    @ManyToOne
+    @JoinColumn(name = "id_estudiante", nullable = false)
+    private Student student;
+
 
 }

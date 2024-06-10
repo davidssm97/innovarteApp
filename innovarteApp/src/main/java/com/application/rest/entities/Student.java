@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -27,4 +29,10 @@ public class Student {
 
     @Column(name = "Correo")
     private String email;
+
+    @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+    private List<Enrollments>enrollmentsList = new ArrayList<>();
+
+    @OneToMany(mappedBy = "student1", cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+    private List<Payment>paymentList = new ArrayList<>();
 }
