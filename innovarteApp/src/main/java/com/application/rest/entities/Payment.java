@@ -1,10 +1,7 @@
 package com.application.rest.entities;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.*;
 
 import java.math.BigDecimal;
@@ -18,6 +15,9 @@ import java.time.LocalDate;
 @Entity
 @Table(name = "Pagos")
 public class Payment {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_pago")
     private Integer paymentId;
     private BigDecimal amount;
     private LocalDate paymentDate;
