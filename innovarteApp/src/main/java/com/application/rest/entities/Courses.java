@@ -17,13 +17,13 @@ public class Courses {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Id_curso")
-    private Long courseId;
+    private Integer courseId;
 
     @Column(name = "Nombre_curso")
     private String courseName;
 
     @Column(name = "Creditos")
-    private Long credits;
+    private Integer credits;
 
     @ManyToOne
     @JoinColumn(name = "id_profesor", nullable = false)

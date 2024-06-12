@@ -17,7 +17,7 @@ public class Enrollments {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "Matricula_id")
-    private Long enrollmentID;
+    private Integer enrollmentID;
 
     @Column(name = "Fecha_matriucla")
     private LocalDate enrollmentDate;
