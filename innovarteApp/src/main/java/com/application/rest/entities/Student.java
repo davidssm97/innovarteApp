@@ -32,8 +32,10 @@ public class Student {
     private String email;
 
     @OneToMany(mappedBy = "student",cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+    @JsonIgnore
     private List<Enrollments>enrollmentsList = new ArrayList<>();
 
     @OneToMany(mappedBy = "student1", cascade = CascadeType.ALL,fetch = FetchType.LAZY,orphanRemoval = true)
+    @JsonIgnore
     private List<Payment>paymentList = new ArrayList<>();
 }

@@ -1,5 +1,6 @@
 package com.application.rest.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,6 +29,7 @@ public class Enrollments {
 
     @ManyToOne
     @JoinColumn(name = "id_estudiante", nullable = false)
+    @JsonIgnore
     private Student student;
 
 

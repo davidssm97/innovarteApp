@@ -6,12 +6,15 @@ import com.application.rest.entities.Student;
 import com.application.rest.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
+
+import static java.util.Arrays.stream;
 
 @RestController
 @RequestMapping("/api/student")
@@ -41,4 +44,70 @@ public class StudentController {
         }
         return ResponseEntity.notFound().build();
     }
+
+    @GetMapping("/findAll")
+    public ResponseEntity<?> findAll(){
+
+        List<StudentDto> studentList = studentService.findAll()
+                .stream()
+                .map(student -> StudentDto.builder()
+                        .studentId(student.getStudentId())
+                        .name(student.getName())
+                        .birthDate(student.getBirthDate())
+                        .email(student.getEmail())
+                        .enrollmentsList(student.getEnrollmentsList())
+                        .paymentList(student.getPaymentList())
+                        .build())
+                .toList();
+        return ResponseEntity.ok(studentList);
+
+    }
+
+
+    @PostMapping("/save")
+    public ResponseEntity<?> save(@RequestBody StudentDto studentDto) throws URISyntaxException {
+
+        if (studentDto.getName().isBlank()){
+            return ResponseEntity.badRequest().build();
+        }
+
+        studentService.save(Student.builder()
+                .name(studentDto.getName())
+                .build());
+
+        return ResponseEntity.created(new URI("/api/student/save")).build();
+
+    }
+
+
+    @PutMapping("/update/{studentId}")
+    public ResponseEntity<?>updateStudent(@PathVariable Integer studentId, @RequestBody StudentDto studentDto){
+
+        Optional<Student> studentOptional = studentService.findByid(studentId);
+
+        if (studentOptional.isPresent()){
+            Student student = studentOptional.get();
+            student.setName(studentDto.getName());
+            studentService.save(student);
+            return ResponseEntity.ok("Registro actualizado");
+        }
+        return ResponseEntity.notFound().build();
+
+    }
+
+    @DeleteMapping("/delete/{studentId}")
+    public ResponseEntity<?> deleteById(@PathVariable Integer studentId){
+
+        if (studentId != null){
+            studentService.deleteById(studentId);
+            return ResponseEntity.ok("Registro eliminado");
+        }
+
+        return ResponseEntity.badRequest().build();
+
+    }
+
+
+
+
 }
