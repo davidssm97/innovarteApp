@@ -21,6 +21,7 @@ public class CourseDto {
     private Integer courseId;
     private String courseName;
     private Integer credits;
+    private String descripcion;  // Nuevo campo
     private Professor professor;
     private List<Enrollments> enrollmentsList = new ArrayList<>();
 

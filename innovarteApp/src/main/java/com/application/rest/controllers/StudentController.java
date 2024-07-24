@@ -23,6 +23,7 @@ public class StudentController {
     @Autowired
     private IStudentService studentService;
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/find/{studentId}")
     public ResponseEntity<?> findById(@PathVariable Integer studentId){
         Optional<Student>studentOptional = studentService.findByid(studentId);
@@ -45,6 +46,7 @@ public class StudentController {
         return ResponseEntity.notFound().build();
     }
 
+    @CrossOrigin(origins = "http://localhost:4200")
     @GetMapping("/findAll")
     public ResponseEntity<?> findAll(){
 

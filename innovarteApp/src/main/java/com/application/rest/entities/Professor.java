@@ -1,5 +1,6 @@
 package com.application.rest.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -29,6 +30,7 @@ public class Professor {
     @Column(name = "Correo")
     private String email;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "professor", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
     private List<Courses> coursesList = new ArrayList<>();
 
