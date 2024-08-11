@@ -1,9 +1,7 @@
 package com.application.rest.controllers;
 
-
 import com.application.rest.controllers.dto.CourseDto;
 import com.application.rest.entities.Courses;
-import com.application.rest.entities.Student;
 import com.application.rest.service.ICourseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -32,6 +30,7 @@ public class CourseController {
                     .courseName(courses.getCourseName())
                     .credits(courses.getCredits())
                     .descripcion(courses.getDescripcion())  // Nuevo campo
+                    .imagen(courses.getImagen())  // Nuevo campo
                     .professor(courses.getProfessor())
                     .enrollmentsList(courses.getEnrollmentsList())
                     .build();
@@ -50,6 +49,7 @@ public class CourseController {
                         .courseName(courses.getCourseName())
                         .credits(courses.getCredits())
                         .descripcion(courses.getDescripcion())  // Nuevo campo
+                        .imagen(courses.getImagen())  // Nuevo campo
                         .enrollmentsList(courses.getEnrollmentsList())
                         .professor(courses.getProfessor())
                         .build()
@@ -66,6 +66,7 @@ public class CourseController {
                 .courseName(courseDto.getCourseName())
                 .credits(courseDto.getCredits())
                 .descripcion(courseDto.getDescripcion())  // Nuevo campo
+                .imagen(courseDto.getImagen())  // Nuevo campo
                 .professor(courseDto.getProfessor())
                 .enrollmentsList(courseDto.getEnrollmentsList())
                 .courseId(courseDto.getCourseId())
@@ -83,6 +84,7 @@ public class CourseController {
             courses.setCourseName(courseDto.getCourseName());
             courses.setCredits(courseDto.getCredits());
             courses.setDescripcion(courseDto.getDescripcion());  // Nuevo campo
+            courses.setImagen(courseDto.getImagen());  // Nuevo campo
             courses.setProfessor(courseDto.getProfessor());
             courseService.save(courses);
             return ResponseEntity.ok().build();

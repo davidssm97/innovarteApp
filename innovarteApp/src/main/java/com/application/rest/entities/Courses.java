@@ -29,6 +29,9 @@ public class Courses {
     @Column(name = "Descripcion")
     private String descripcion;  // Nuevo campo
 
+    @Column(name = "Imagen")
+    private String imagen;  // Nuevo campo
+
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "id_profesor", nullable = false)
